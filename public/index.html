@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Legendary Racing Keychains — Iconic Miniatures</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Llaveros coleccionables - réplicas inspiradas en coches míticos. Compra con grabado personalizado. Demo de tienda.">
+<style>
+  :root{
+    --bg: #ffffff;
+    --accent: #0066cc;
+    --accent-dark: #004a99;
+    --black: #0b0b0b;
+    --muted: #666666;
+    --card-bg: #f6f8fb;
+    --radius: 18px;
+    --success: #1e9a3e;
+    --danger: #d23f3f;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:'Poppins',system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    background:var(--bg);
+    color:var(--black);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+  }
+  /* Header */
+  header{
+    position:fixed;left:0;right:0;top:0;height:72px;padding:12px 20px;
+    background:linear-gradient(90deg,#ffffff,#ffffff);
+    display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e6eefc;z-index:1000;
+  }
+  .brand{display:flex;align-items:center; gap:12px;}
+  .logo{width:48px;height:48px;border-radius:10px;background:var(--accent); color:#fff; display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,0.06);}
+  .brand h1{font-size:16px;margin:0;color:var(--black);font-weight:700;}
+  nav{display:flex;gap:12px;align-items:center}
+  nav a{color:var(--black); font-weight:600; font-size:14px; padding:8px 10px; border-radius:8px;}
+  nav a:hover{background:#f0f6ff;color:var(--accent-dark)}
+  /* header right tools */
+  .tools{display:flex;align-items:center;gap:10px}
+  .icon-btn{background:#fff;border:1px solid #eef5ff;padding:8px;border-radius:10px;cursor:pointer;position:relative}
+  .icon-btn .count{position:absolute;top:-6px;right:-6px;background:var(--danger);color:#fff;border-radius:50%;padding:2px 6px;font-size:11px}
+  .lang-toggle{padding:6px 10px;border-radius:8px;border:1px solid #eef5ff;cursor:pointer}
+
+  /* Container */
+  .wrap{max-width:1200px;margin:100px auto 80px;padding:0 20px;}
+
+  /* Hero */
+  .hero{display:flex;gap:20px;align-items:center;background:linear-gradient(180deg,#ffffff,#fbfdff);padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
+  .hero-left{flex:1}
+  .hero h2{margin:0;font-size:28px;color:var(--accent-dark)}
+  .hero p{color:var(--muted);margin:8px 0 16px}
+  .cta{background:var(--accent); color:#fff; padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:700}
+
+  /* search/filter row */
+  .controls{display:flex;gap:12px;align-items:center;margin:18px 0}
+  .controls input[type="search"], .controls select{padding:10px;border-radius:10px;border:1px solid #e6eefc;background:#fff}
+  .controls .small{font-size:13px;color:var(--muted)}
+
+  /* Product Grid */
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;}
+  .card{background:var(--card-bg);border-radius:14px;padding:14px;box-shadow: 0 8px 20px rgba(11,11,11,0.04);position:relative;overflow:visible}
+  .card img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:6px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+  .card h4{margin:10px 0 6px}
+  .card p{margin:0 0 10px;color:var(--muted)}
+  .card .price{font-weight:700;color:var(--accent-dark)}
+  .card .row{display:flex;gap:8px;margin-top:8px}
+  .btn{padding:8px 10px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+  .btn-primary{background:var(--accent);color:#fff}
+  .btn-outline{background:#fff;border:1px solid #dbeafc;color:var(--black)}
+
+  /* color badges for filters */
+  .badge{display:inline-block;padding:6px 8px;border-radius:8px;font-size:13px;background:#fff;border:1px solid #eef5ff;margin-right:6px}
+
+  /* drawer cart */
+  .cart-drawer{position:fixed;right:0;top:0;height:100vh;width:420px;background:#fff;box-shadow:-20px 0 50px rgba(0,0,0,0.2);transform:translateX(110%);transition:transform .28s ease;z-index:2200;padding:20px;overflow:auto}
+  .cart-drawer.open{transform:translateX(0)}
+  .cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .cart-item{display:flex;gap:12px;padding:12px;border-radius:12px;border:1px solid #f0f6ff;margin-bottom:10px}
+  .cart-item img{width:84px;height:56px;object-fit:cover;border-radius:8px}
+  .cart-item .meta{flex:1}
+  .cart-summary{margin-top:10px;padding-top:10px;border-top:1px solid #f0f6ff}
+  .checkout-row{display:flex;gap:10px;margin-top:10px}
+
+  /* wishlist page */
+  .page-panel{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.04);margin-top:18px}
+
+  /* toast */
+  .toast-container{position:fixed;right:16px;bottom:16px;z-index:3000;display:flex;flex-direction:column;gap:8px}
+  .toast{background:#222;color:#fff;padding:10px 14px;border-radius:8px;opacity:0.98}
+
+  /* modal overlay (reused) */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;align-items:center;justify-content:center;z-index:2000;padding:20px}
+  .overlay.show{display:flex}
+  .modal{width:100%;max-width:1000px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.35);display:flex;gap:0;min-height:420px}
+  .modal-left{flex:1;padding:20px;background:linear-gradient(180deg,#ffffff,#f4fbff)}
+  .modal-right{flex:1;padding:28px;background:#fff}
+  .thumbs{display:flex;gap:8px;margin-top:10px}
+  .thumbs img{width:72px;height:48px;object-fit:cover;border-radius:8px;cursor:pointer;border:3px solid transparent}
+  .thumbs img.active{border-color:var(--accent)}
+
+  footer{margin-top:40px;padding:32px;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f0f6ff}
+
+  @media(max-width:900px){
+    .hero{flex-direction:column;text-align:center}
+    .cart-drawer{width:100%;transform:translateY(110%);right:auto;left:0;bottom:0;top:auto;height:60vh}
+  }
+</style>
+<script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="logo">LRK</div>
+    <div>
+      <h1 id="brandTitle">Legendary Racing Keychains</h1>
+      <div style="font-size:12px;color:var(--muted)" id="brandSubtitle">Iconic miniatures — custom engraving available</div>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#" data-nav="home" class="navlink">Home</a>
+    <a href="#" data-nav="shop" class="navlink">Shop</a>
+    <a href="#" data-nav="about" class="navlink">About</a>
+    <a href="#" data-nav="shipping" class="navlink">Shipping</a>
+    <a href="#" data-nav="contact" class="navlink">Contact</a>
+  </nav>
+
+  <div class="tools">
+    <div class="lang-toggle" id="langToggle" title="Toggle language">ES</div>
+    <button class="icon-btn" id="wishlistBtn" title="Wishlist (favorites)" onclick="openWishlist()">
+      ♥ <span class="count" id="wishlistCount" style="display:none">0</span>
+    </button>
+    <button class="icon-btn" id="userBtn" title="Login / Account" onclick="openAuth()">
+      👤 <span id="userName" style="margin-left:6px"></span>
+    </button>
+    <button class="icon-btn" id="cartBtn" title="Cart" onclick="toggleCart()">
+      🛒 <span class="count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section id="home" class="hero" aria-labelledby="homeTitle">
+    <div class="hero-left">
+      <h2 id="homeTitle">Collect the legends — miniature racing keychains</h2>
+      <p id="heroSubtitle">Handcrafted, detailed and ready for collectors. Choose a legendary car, add a personal engraving and order safely.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="cta" onclick="scrollToSection('shop')">Browse the collection</button>
+        <button class="cta" onclick="openWishlist()">My Wishlist</button>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div style="font-size:22px">Limited Series</div>
+        <small style="color:#e8f4ff">Renault • Ferrari • Mercedes</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- search & filters -->
+  <div class="controls">
+    <input id="searchInput" type="search" placeholder="Search products..." oninput="renderProducts()" style="flex:1">
+    <select id="filterColor" onchange="renderProducts()">
+      <option value="">All colors</option>
+      <option value="yellow">Yellow / Blue</option>
+      <option value="red">Red</option>
+      <option value="grey">Grey / Light Blue</option>
+    </select>
+    <div class="small">Sort:</div>
+    <select id="sortSelect" onchange="renderProducts()">
+      <option value="default">Default</option>
+      <option value="price-asc">Price ↑</option>
+      <option value="price-desc">Price ↓</option>
+    </select>
+  </div>
+
+  <!-- SHOP -->
+  <div class="section-title"><h3>Shop</h3><p>Available keychains — click one to inspect and order</p></div>
+  <section id="shop" class="grid"></section>
+
+  <!-- Wishlist / Favorites panel (hidden by default) -->
+  <div id="wishlistPanel" class="page-panel hidden" style="display:none">
+    <h3>Your Wishlist</h3>
+    <div id="wishlistItems" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px"></div>
+  </div>
+
+  <!-- About -->
+  <div class="section-title"><h3>About</h3><p>Who we are and why we make these keychains</p></div>
+  <section id="about" class="card" style="padding:26px">
+    <h4 style="margin-top:0">About Racing Keychains</h4>
+    <p style="color:var(--muted)">We are a small team of motorsport fans and artisans. Each keychain is produced in small runs, painted and finished by hand, then inspected for quality. We focus on faithful color reproduction and durable metalwork so your miniature remains an heirloom.</p>
+    <p style="color:var(--muted)">We offer engraving, secure packaging and tracked shipping. Join our collector community — every release has a limited number of pieces.</p>
+  </section>
+
+  <!-- Shipping -->
+  <div class="section-title"><h3>Shipping & Returns</h3><p>Important information about delivery and returns</p></div>
+  <section id="shipping" class="card" style="padding:26px">
+    <h4 style="margin-top:0">Shipping & Returns</h4>
+    <p style="color:var(--muted)">We ship worldwide. Standard EU shipping: 3-7 business days. International: 7-15 business days. All keychains are shipped with tracking. Returns accepted within 14 days if unused—contact us for instructions.</p>
+    <p style="color:var(--muted)"><strong>Packaging:</strong> Each keychain includes a protective box and certificate of authenticity.</p>
+  </section>
+
+  <!-- Contact -->
+  <div class="section-title"><h3>Contact</h3><p>Get in touch</p></div>
+  <section id="contact" class="card" style="padding:22px">
+    <h4 style="margin-top:0">Contact us</h4>
+    <p style="color:var(--muted)">Questions? Write to us and we'll reply within 24-48 hours.</p>
+    <form id="contactForm" style="display:flex;flex-direction:column;gap:10px;max-width:720px">
+      <input name="name" placeholder="Your name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <textarea name="message" rows="5" placeholder="Message" required></textarea>
+      <div style="display:flex;gap:10px">
+        <button type="submit" class="btn btn-primary">Send Message</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Phone: +34 600 000 000 (demo)')">Call</button>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Legendary Racing Keychains — handcrafted miniatures • <span id="ordersCount">0</span> orders placed (local demo)
+  </footer>
+</main>
+
+<!-- CART DRAWER -->
+<div id="cartDrawer" class="cart-drawer" aria-hidden="true" role="dialog">
+  <div class="cart-header">
+    <div><strong id="cartTitle">Your Cart</strong> <span id="cartUser"></span></div>
+    <div><button class="btn btn-outline" onclick="toggleCart()">Close</button></div>
+  </div>
+  <div id="cartItems"></div>
+  <div class="cart-summary">
+    <div style="display:flex;justify-content:space-between"><div>Subtotal</div><div id="cartSubtotal">€0.00</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px"><div>Shipping</div><div id="cartShipping">€2.99</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px;font-weight:700"><div>Total</div><div id="cartTotal">€0.00</div></div>
+
+    <div class="checkout-row">
+     <button class="btn btn-primary" onclick="checkoutReal()">Pay with Stripe (Demo)</button>
+    </div>
+    <div style="margin-top:10px">
+      <button class="btn btn-outline" onclick="saveCartAsOrder()">Place order (local)</button>
+    </div>
+
+    <div style="margin-top:10px">
+      <small class="small-note">Demo: orders are stored locally and can be sent to Netlify Forms when hosted on Netlify.</small>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PRODUCT (reused) -->
+<div id="overlay" class="overlay" role="dialog" aria-hidden="true">
+  <div class="modal" role="document" aria-modal="true">
+    <div class="modal-left">
+      <div class="modal-images">
+        <img id="mainImage" class="main-img" src="" alt="Main product image">
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+    </div>
+    <div class="modal-right">
+      <div id="colorTraces" style="height:64px;margin-bottom:8px"></div>
+      <h2 id="modalTitle" class="prod-title">Title</h2>
+      <div id="modalDesc" class="prod-desc">Description</div>
+      <div class="color-blocks" id="colorBlocks"></div>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+        <div style="font-weight:700;font-size:20px" id="modalPrice">€0.00</div>
+        <div style="color:var(--muted);font-size:13px">VAT included</div>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <input id="engravingInput" placeholder="Engraving text (optional)" style="flex:1;padding:10px;border-radius:10px;border:1px solid #eef5ff">
+        <select id="qtySelect" style="padding:10px;border-radius:10px;border:1px solid #eef5ff">
+          <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        </select>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <button class="btn btn-primary" id="addToCartBtn">Add to cart</button>
+        <button class="btn btn-outline" id="addToWishlistBtn">Wishlist</button>
+        <button class="btn btn-outline" onclick="closeModal()">Close</button>
+      </div>
+
+      <div id="orderStatus" class="small-note" style="margin-top:12px;color:green"></div>
+    </div>
+  </div>
+</div>
+
+<!-- AUTH MODAL -->
+<div id="authOverlay" class="overlay" aria-hidden="true">
+  <div class="modal" style="max-width:420px">
+    <div style="padding:20px">
+      <h3 id="authTitle">Account</h3>
+      <div id="authContent">
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <input id="authName" placeholder="Your name" />
+          <input id="authPass" placeholder="Password (demo)" type="password" />
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <button class="btn btn-primary" onclick="doLogin()">Login</button>
+            <button class="btn btn-outline" onclick="closeAuth()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toasts -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- Hidden Netlify order form (will be submitted when placed and when hosted on Netlify) -->
+<form name="order" id="netlifyOrderForm" data-netlify="true" style="display:none">
+  <input type="hidden" name="order_data" id="netlifyOrderData" />
+  <input type="hidden" name="form-name" value="order" />
+</form>
+
+<script>
+/* ---------- Data (product base from your file) ---------- */
+const PRODUCTS = {
+  alonso: {
+    id:'alonso',
+    title:'Miniature Renault R25 (2005)',
+    price:19.99,
+    desc:'Replica inspired by the Renault R25 (2005). Solid yellow and blue blocks, premium metal ring and high-detail paint.',
+    images:[
+      'https://via.placeholder.com/900x600.png?text=Alonso+1',
+      'https://via.placeholder.com/900x600.png?text=Alonso+2',
+      'https://via.placeholder.com/900x600.png?text=Alonso+3'
+    ],
+    colors:[ {label:'Yellow', hex:'#FFFF00'}, {label:'Blue', hex:'#00AFFF'} ],
+    tags:['yellow','renault'],
+    priceStr:'€19.99'
+  },
+  schumacher: {
+    id:'schumacher',
+    title:'Miniature Ferrari F2000 (2000)',
+    price:19.99,
+    desc:'Classic red miniature inspired by early 2000s Ferrari livery. Gloss finish and premium key ring.',
+    images:[
+      'https://via.placeholder.com/900x600.png?text=Schumacher+1',
+      'https://via.placeholder.com/900x600.png?text=Schumacher+2',
+      'https://via.placeholder.com/900x600.png?text=Schumacher+3'
+    ],
+    colors:[ {label:'Red', hex:'#FF0000'} ],
+    tags:['red','ferrari'],
+    priceStr:'€19.99'
+  },
+  hamilton: {
+    id:'hamilton',
+    title:'Miniature Mercedes W11 (2020)',
+    price:21.99,
+    desc:'Silver & light-blue miniature inspired by modern Mercedes livery. Chrome-like parts and fine details.',
+    images:[
+      'https://via.placeholder.com/900x600.png?text=Hamilton+1',
+      'https://via.placeholder.com/900x600.png?text=Hamilton+2',
+      'https://via.placeholder.com/900x600.png?text=Hamilton+3'
+    ],
+    colors:[ {label:'Grey', hex:'#9aa3ad'}, {label:'Light Blue', hex:'#cfefff'} ],
+    tags:['grey','mercedes'],
+    priceStr:'€21.99'
+  }
+};
+
+/* ---------- State ---------- */
+let CART = JSON.parse(localStorage.getItem('_cart_v1') || '{}'); // { productId: {qty, engraving} }
+let WISHLIST = JSON.parse(localStorage.getItem('_wishlist_v1') || '[]'); // [productId]
+let ORDERS_KEY = '_orders_v1'; // stored orders
+let LANG = localStorage.getItem('_lang') || 'es';
+let CURRENT_USER = JSON.parse(localStorage.getItem('_user_v1') || 'null'); // {name}
+
+/* ---------- Helpers ---------- */
+function t(str){
+  // minimal translations
+  const EN = {
+    'Your Cart':'Your Cart','Limited Series':'Limited Series',
+    'Browse the collection':'Browse the collection',
+    'My Wishlist':'My Wishlist','Available keychains — click one to inspect and order':'Available keychains — click one to inspect and order',
+    'Your Wishlist':'Your Wishlist','Subtotal':'Subtotal','Shipping':'Shipping','Total':'Total',
+    'Pay with Stripe (Demo)':'Pay with Stripe (Demo)','Pay with PayPal (Demo)':'Pay with PayPal (Demo)',
+    'Place order (local)':'Place order (local)','Demo: orders are stored locally and can be sent to Netlify Forms when hosted on Netlify.':'Demo: orders are stored locally and can be sent to Netlify Forms when hosted on Netlify.',
+    'Add to cart':'Add to cart','Wishlist':'Wishlist','Close':'Close'
+  };
+  if(LANG === 'en') return EN[str] || str;
+  return str; // default Spanish texts in DOM are already Spanish/English mix; we handle main ones
+}
+function saveState(){
+  localStorage.setItem('_cart_v1', JSON.stringify(CART));
+  localStorage.setItem('_wishlist_v1', JSON.stringify(WISHLIST));
+}
+function showToast(msg, time=2500){
+  const c = document.getElementById('toastContainer');
+  const el = document.createElement('div'); el.className='toast'; el.textContent = msg;
+  c.appendChild(el);
+  setTimeout(()=>{ el.style.opacity='0'; setTimeout(()=>el.remove(),400); }, time);
+}
+
+/* ---------- Render products ---------- */
+function renderProducts(){
+  const container = document.getElementById('shop');
+  container.innerHTML = '';
+  const q = (document.getElementById('searchInput').value || '').toLowerCase();
+  const colorFilter = document.getElementById('filterColor').value;
+  const sort = document.getElementById('sortSelect').value;
+  let products = Object.values(PRODUCTS);
+  if(q) products = products.filter(p => (p.title + ' ' + p.desc).toLowerCase().includes(q));
+  if(colorFilter){
+    if(colorFilter==='yellow') products = products.filter(p => p.tags.includes('yellow') || p.tags.includes('renault'));
+    if(colorFilter==='red') products = products.filter(p => p.tags.includes('red') || p.tags.includes('ferrari'));
+    if(colorFilter==='grey') products = products.filter(p => p.tags.includes('grey') || p.tags.includes('mercedes'));
+  }
+  if(sort==='price-asc') products.sort((a,b)=>a.price-b.price);
+  if(sort==='price-desc') products.sort((a,b)=>b.price-a.price);
+
+  products.forEach(p=>{
+    const card = document.createElement('div'); card.className='card';
+    const img = document.createElement('img'); img.src = p.images[0];
+    const h4 = document.createElement('h4'); h4.textContent = p.title;
+    const desc = document.createElement('p'); desc.textContent = p.desc;
+    const price = document.createElement('div'); price.className='price'; price.textContent = p.priceStr;
+    const row = document.createElement('div'); row.className='row';
+    const btnView = document.createElement('button'); btnView.className='btn btn-primary'; btnView.textContent='View & Order';
+    btnView.setAttribute('data-product', p.id);
+    btnView.addEventListener('click', ()=> openModalFor(p.id));
+    const btnWish = document.createElement('button'); btnWish.className='btn btn-outline'; btnWish.textContent='Wishlist';
+    btnWish.addEventListener('click', ()=> {
+      toggleWishlist(p.id);
+      showToast('Added to wishlist');
+    });
+    row.appendChild(btnView); row.appendChild(btnWish);
+
+    card.appendChild(img); card.appendChild(h4); card.appendChild(desc); card.appendChild(price); card.appendChild(row);
+    container.appendChild(card);
+  });
+}
+renderProducts();
+
+/* ---------- Modal product ---------- */
+const overlay = document.getElementById('overlay');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+const modalPrice = document.getElementById('modalPrice');
+const mainImage = document.getElementById('mainImage');
+const thumbs = document.getElementById('thumbs');
+const colorBlocks = document.getElementById('colorBlocks');
+const colorTraces = document.getElementById('colorTraces');
+let currentProduct = null;
+
+function openModalFor(id){
+  const p = PRODUCTS[id]; if(!p) return;
+  currentProduct = p;
+  modalTitle.textContent = p.title;
+  modalDesc.textContent = p.desc;
+  modalPrice.textContent = p.priceStr;
+  mainImage.src = p.images[0];
+  thumbs.innerHTML=''; p.images.forEach((src,i)=>{
+    const im = document.createElement('img'); im.src=src; im.alt=p.title+' '+(i+1);
+    im.addEventListener('click', ()=>{ document.querySelectorAll('#thumbs img').forEach(t=>t.classList.remove('active')); im.classList.add('active'); mainImage.src = src;});
+    if(i===0) im.classList.add('active');
+    thumbs.appendChild(im);
+  });
+  colorBlocks.innerHTML='';
+  p.colors.forEach(c=>{
+    const box = document.createElement('div'); box.className='color-box'; box.style.background=c.hex; box.title=c.label;
+    colorBlocks.appendChild(box);
+  });
+  // traces
+  colorTraces.innerHTML='';
+  if(p.id==='alonso'){
+    const left = document.createElement('div'); left.style.width='18%'; left.style.height='120px'; left.style.background='#FFFF00';
+    left.style.position='absolute'; left.style.left='0'; left.style.top='0'; left.style.borderRadius='0 0 30px 0'; left.style.zIndex='-1';
+    const right = document.createElement('div'); right.style.width='18%'; right.style.height='120px'; right.style.background='#00AFFF';
+    right.style.position='absolute'; right.style.right='0'; right.style.top='0'; right.style.borderRadius='0 0 0 30px'; right.style.zIndex='-1';
+    colorTraces.appendChild(left); colorTraces.appendChild(right);
+  } else if(p.id==='schumacher'){
+    const red = document.createElement('div'); red.style.width='100%'; red.style.height='96px'; red.style.background='#FF0000';
+    red.style.position='absolute'; red.style.left='0'; red.style.top='0'; red.style.borderRadius='0 0 20px 20px'; red.style.zIndex='-1';
+    colorTraces.appendChild(red);
+  } else if(p.id==='hamilton'){
+    const left = document.createElement('div'); left.style.width='30%'; left.style.height='120px'; left.style.background='#9aa3ad';
+    left.style.position='absolute'; left.style.left='0'; left.style.top='0'; left.style.borderRadius='0 0 20px 0'; left.style.zIndex='-1';
+    const right = document.createElement('div'); right.style.width='30%'; right.style.height='120px'; right.style.background='#CFEFFF';
+    right.style.position='absolute'; right.style.right='0'; right.style.top='0'; right.style.borderRadius='0 0 0 20px'; right.style.zIndex='-1';
+    colorTraces.appendChild(left); colorTraces.appendChild(right);
+  }
+  // set engraving & qty defaults
+  document.getElementById('engravingInput').value = '';
+  document.getElementById('qtySelect').value = '1';
+  // add handlers
+  document.getElementById('addToCartBtn').onclick = () => {
+    const engraving = document.getElementById('engravingInput').value.trim();
+    const qty = parseInt(document.getElementById('qtySelect').value || '1');
+    addToCart(p.id, qty, engraving);
+    showToast('Added to cart');
+    renderCart();
+    closeModal();
+  };
+  document.getElementById('addToWishlistBtn').onclick = ()=>{
+    toggleWishlist(p.id);
+    showToast('Added to wishlist');
+  };
+  overlay.classList.add('show');
+}
+function closeModal(){ overlay.classList.remove('show'); colorTraces.innerHTML=''; currentProduct=null; }
+
+/* ---------- CART ---------- */
+function addToCart(productId, qty=1, engraving=''){
+  if(!CART[productId]) CART[productId] = {qty:0, engraving: engraving || ''};
+  CART[productId].qty += qty;
+  if(engraving) CART[productId].engraving = engraving;
+  saveState();
+  updateCartCount();
+}
+function setCartItemQty(productId, qty){
+  if(!CART[productId]) return;
+  CART[productId].qty = qty;
+  if(qty <= 0) delete CART[productId];
+  saveState();
+  renderCart();
+  updateCartCount();
+}
+function removeCartItem(productId){
+  delete CART[productId];
+  saveState();
+  renderCart();
+  updateCartCount();
+}
+function calculateCart(){
+  let subtotal = 0; let items = 0;
+  Object.keys(CART).forEach(id=>{
+    const p = PRODUCTS[id]; if(!p) return;
+    subtotal += p.price * (CART[id].qty || 1);
+    items += (CART[id].qty || 1);
+  });
+  return {subtotal, items};
+}
+function updateCartCount(){
+  const {items} = calculateCart();
+  document.getElementById('cartCount').textContent = items;
+  document.getElementById('cartCount').style.display = items ? 'inline-block' : 'none';
+}
+function renderCart(){
+  const container = document.getElementById('cartItems');
+  container.innerHTML='';
+  const {subtotal, items} = calculateCart();
+  if(items === 0){
+    container.innerHTML = '<div style="padding:20px;color:var(--muted)">Your cart is empty.</div>';
+  } else {
+    Object.keys(CART).forEach(id=>{
+      const p = PRODUCTS[id];
+      if(!p) return;
+      const itm = document.createElement('div'); itm.className='cart-item';
+      itm.innerHTML = `<img src="${p.images[0]}" alt="${p.title}">
+        <div class="meta">
+          <div style="font-weight:700">${p.title}</div>
+          <div style="color:var(--muted);font-size:13px">${p.priceStr} × <input style="width:48px;padding:4px;margin-left:8px;border-radius:6px;border:1px solid #eef5ff" value="${CART[id].qty}" onchange="setCartItemQty('${id}', parseInt(this.value)||1)" /></div>
+          <div style="margin-top:6px;color:var(--muted);font-size:13px">Engraving: ${CART[id].engraving||'—'}</div>
+          <div style="margin-top:8px"><button class="btn btn-outline" onclick="removeCartItem('${id}')">Remove</button></div>
+        </div>`;
+      container.appendChild(itm);
+    });
+  }
+  document.getElementById('cartSubtotal').textContent = '€' + subtotal.toFixed(2);
+  const shipping = items > 0 ? 2.99 : 0.00;
+  document.getElementById('cartShipping').textContent = '€' + shipping.toFixed(2);
+  document.getElementById('cartTotal').textContent = '€' + (subtotal + shipping).toFixed(2);
+  localStorage.setItem('_cart_v1', JSON.stringify(CART));
+  updateCartCount();
+}
+function toggleCart(){
+  const drawer = document.getElementById('cartDrawer');
+  drawer.classList.toggle('open');
+  renderCart();
+  document.getElementById('cartDrawer').setAttribute('aria-hidden', drawer.classList.contains('open') ? 'false' : 'true');
+}
+
+/* ---------- Wishlist ---------- */
+function toggleWishlist(id){
+  if(WISHLIST.includes(id)) WISHLIST = WISHLIST.filter(x=>x!==id);
+  else WISHLIST.push(id);
+  localStorage.setItem('_wishlist_v1', JSON.stringify(WISHLIST));
+  document.getElementById('wishlistCount').textContent = WISHLIST.length;
+  document.getElementById('wishlistCount').style.display = WISHLIST.length ? 'inline-block' : 'none';
+  renderWishlistItems();
+}
+function renderWishlistItems(){
+  const panel = document.getElementById('wishlistItems');
+  panel.innerHTML='';
+  if(WISHLIST.length===0){
+    panel.innerHTML='<div style="color:var(--muted);padding:8px">No favourites yet.</div>';
+    return;
+  }
+  WISHLIST.forEach(id=>{
+    const p = PRODUCTS[id];
+    if(!p) return;
+    const card = document.createElement('div'); card.className='card';
+    card.style.padding='10px';
+    card.innerHTML = `<img src="${p.images[0]}" style="height:120px"><h4 style="margin-top:8px">${p.title}</h4>
+      <div style="color:var(--muted)">${p.priceStr}</div>
+      <div style="margin-top:8px">
+        <button class="btn btn-primary" onclick="openModalFromWishlist('${id}')">View</button>
+        <button class="btn btn-outline" onclick="toggleWishlist('${id}')">Remove</button>
+      </div>`;
+    panel.appendChild(card);
+  });
+}
+function openWishlist(){ document.getElementById('wishlistPanel').style.display='block'; scrollToSection('shop'); renderWishlistItems(); }
+function openModalFromWishlist(id){ openModalFor(id); }
+
+/* ---------- Orders: save and Netlify Forms submission ---------- */
+function saveCartAsOrder(){
+  const {subtotal, items} = calculateCart();
+  if(items===0){ showToast('Cart empty'); return; }
+  const order = {
+    id: 'ORD-' + Date.now(),
+    items: JSON.parse(JSON.stringify(CART)),
+    subtotal, shipping:2.99, total: subtotal + 2.99,
+    placedAt: new Date().toISOString(),
+    user: CURRENT_USER ? CURRENT_USER.name : 'guest'
+  };
+  // save locally
+  let orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+  orders.push(order);
+  localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+  updateOrdersCount();
+  showToast('Order saved locally');
+
+  // try to submit to Netlify Forms (only works when hosted on Netlify)
+  try{
+    const netForm = document.getElementById('netlifyOrderForm');
+    const dataInput = document.getElementById('netlifyOrderData');
+    dataInput.value = JSON.stringify(order);
+    // programmatic submit
+    netForm.submit();
+    showToast('Order sent to server (Netlify Forms) if hosted');
+  }catch(e){
+    console.warn('Netlify submit failed (probably local).', e);
+  }
+  // clear cart
+  CART = {}; saveState(); renderCart(); toggleCart();
+}
+
+/* checkout (Stripe/PayPal) - placeholders */
+async function checkoutReal() {
+  const { subtotal, items } = calculateCart();
+  if (items === 0) {
+    showToast("Cart empty");
+    return;
+  }
+
+  const cartItems = Object.keys(CART).map(id => ({
+    name: PRODUCTS[id].title,
+    price: PRODUCTS[id].price,
+    quantity: CART[id].qty
+  }));
+
+  const response = await fetch("/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ items: cartItems }),
+  });
+
+  const session = await response.json();
+
+  const stripe = Stripe(pk_test_51T3jAJAtdaPfj2LCqPThILLIYWPP4OaRsKfu7Zxaa4HfBUgGwuEcQhqqNm15OUHXqW5mVUfWNaACGhG3Ims0PfuM00j76MW1yI);
+  stripe.redirectToCheckout({ sessionId: session.id });
+}
+
+
+/* ---------- Auth (simple local) ---------- */
+function openAuth(){ document.getElementById('authOverlay').classList.add('show'); }
+function closeAuth(){ document.getElementById('authOverlay').classList.remove('show'); }
+function doLogin(){
+  const name = document.getElementById('authName').value.trim() || 'Guest';
+  // demo password not validated; store user
+  CURRENT_USER = {name};
+  localStorage.setItem('_user_v1', JSON.stringify(CURRENT_USER));
+  document.getElementById('userName').textContent = name;
+  closeAuth();
+  showToast('Logged in as '+name);
+  document.getElementById('cartUser').textContent = name ? (' • ' + name) : '';
+}
+
+/* ---------- Small utilities ---------- */
+function updateOrdersCount(){
+  const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+  document.getElementById('ordersCount').textContent = orders.length;
+}
+updateOrdersCount();
+
+/* ---------- Attach events & init ---------- */
+document.querySelectorAll('.navlink').forEach(a=>{ a.addEventListener('click',(e)=>{ e.preventDefault(); const t=a.getAttribute('data-nav'); scrollToSection(t); }); });
+function scrollToSection(id){ const el=document.getElementById(id); if(!el) return; window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - 80, behavior:'smooth'}); }
+
+document.getElementById('contactForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  showToast('Message sent (demo).');
+  this.reset();
+});
+
+document.getElementById('langToggle').addEventListener('click', ()=>{
+  LANG = LANG === 'es' ? 'en' : 'es';
+  localStorage.setItem('_lang', LANG);
+  document.getElementById('langToggle').textContent = LANG.toUpperCase();
+  // minimal translations for a few labels
+  document.getElementById('homeTitle').textContent = LANG==='en' ? 'Collect the legends — miniature racing keychains' : 'Collect the legends — miniature racing keychains';
+  document.getElementById('brandSubtitle').textContent = LANG==='en' ? 'Iconic miniatures — custom engraving available' : 'Iconic miniatures — custom engraving available';
+  showToast('Language: ' + LANG.toUpperCase());
+});
+
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeModal(); closeAuth(); /* also close cart */ const drawer=document.getElementById('cartDrawer'); if(drawer.classList.contains('open')) toggleCart(); } });
+
+/* init states */
+(function init(){
+  // load wishlist count
+  document.getElementById('wishlistCount').textContent = WISHLIST.length; document.getElementById('wishlistCount').style.display = WISHLIST.length ? 'inline-block':'none';
+  // user name
+  if(CURRENT_USER) document.getElementById('userName').textContent = CURRENT_USER.name;
+  // cart count
+  updateCartCount();
+  renderCart();
+})();
+</script>
+</body>
+</html>
