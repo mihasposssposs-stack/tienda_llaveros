@@ -669,7 +669,7 @@ async function checkoutReal() {
 
   const session = await response.json();
 
-  const stripe = Stripe(pk_test_51T3jAJAtdaPfj2LCqPThILLIYWPP4OaRsKfu7Zxaa4HfBUgGwuEcQhqqNm15OUHXqW5mVUfWNaACGhG3Ims0PfuM00j76MW1yI);
+  const stripe = Stripe("pk_test_51T3jAJAtdaPfj2LCqPThILLIYWPP4OaRsKfu7Zxaa4HfBUgGwuEcQhqqNm15OUHXqW5mVUfWNaACGhG3Ims0PfuM00j76MW1yI");
   stripe.redirectToCheckout({ sessionId: session.id });
 }
 
