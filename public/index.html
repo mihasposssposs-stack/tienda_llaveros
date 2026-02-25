@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Legendary Racing Keychains — Iconic Miniatures</title>
+<title>Legendary Racing Keychains — Miniaturas icónicas</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 <meta name="description" content="Llaveros coleccionables - réplicas inspiradas en coches míticos. Compra con grabado personalizado. Demo de tienda.">
 <style>
@@ -48,7 +48,7 @@
   .lang-toggle{padding:6px 10px;border-radius:8px;border:1px solid #eef5ff;cursor:pointer}
 
   /* Container */
-  .wrap{max-width:1200px;margin:100px auto 80px;padding:0 20px;}
+  .wrap{max-width:12000;margin:100px auto 80px;padding:0 20px;}
 
   /* Hero */
   .hero{display:flex;gap:20px;align-items:center;background:linear-gradient(180deg,#ffffff,#fbfdff);padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
@@ -63,9 +63,9 @@
   .controls .small{font-size:13px;color:var(--muted)}
 
   /* Product Grid */
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(400px,400px)); gap:18px;}
   .card{background:var(--card-bg);border-radius:14px;padding:14px;box-shadow: 0 8px 20px rgba(11,11,11,0.04);position:relative;overflow:visible}
-  .card img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:6px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+  .card img{width:100%;height:350px;object-fit:cover;border-radius:10px;border:6px solid #fff;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
   .card h4{margin:10px 0 6px}
   .card p{margin:0 0 10px;color:var(--muted)}
   .card .price{font-weight:700;color:var(--accent-dark)}
@@ -120,29 +120,29 @@
     <div class="logo">LRK</div>
     <div>
       <h1 id="brandTitle">Legendary Racing Keychains</h1>
-      <div style="font-size:12px;color:var(--muted)" id="brandSubtitle">Iconic miniatures — custom engraving available</div>
+      <div style="font-size:12px;color:var(--muted)" id="brandSubtitle">Miniaturas Icónicas — customización disponible</div>
     </div>
   </div>
 
   <nav>
-    <a href="#" data-nav="home" class="navlink">Home</a>
-    <a href="#" data-nav="shop" class="navlink">Shop</a>
-    <a href="#" data-nav="about" class="navlink">About</a>
-    <a href="#" data-nav="shipping" class="navlink">Shipping</a>
-    <a href="#" data-nav="contact" class="navlink">Contact</a>
+    <a href="#" data-nav="home" class="navlink">Inicio</a>
+    <a href="#" data-nav="shop" class="navlink">Tienda</a>
+    <a href="#" data-nav="about" class="navlink">Sobre nosotros</a>
+    <a href="#" data-nav="shipping" class="navlink">Envios</a>
+    <a href="#" data-nav="contact" class="navlink">Contacto</a>
   </nav>
 
   <div class="tools">
-    <div class="lang-toggle" id="langToggle" title="Toggle language">ES</div>
-    <button class="icon-btn" id="wishlistBtn" title="Wishlist (favorites)" onclick="openWishlist()">
+    <button class="icon-btn" id="wishlistBtn" title="Lista de deseos" onclick="openWishlist()">
       ♥ <span class="count" id="wishlistCount" style="display:none">0</span>
     </button>
-    <button class="icon-btn" id="userBtn" title="Login / Account" onclick="openAuth()">
+    <button class="icon-btn" id="userBtn" title="Iniciar sesión/Acceder " onclick="openAuth()">
       👤 <span id="userName" style="margin-left:6px"></span>
     </button>
-    <button class="icon-btn" id="cartBtn" title="Cart" onclick="toggleCart()">
+    <button class="icon-btn" id="cartBtn" title="Carrito" onclick="toggleCart()">
       🛒 <span class="count" id="cartCount">0</span>
     </button>
+    <button id="langToggle" class="lang-toggle">ES</button>
   </div>
 </header>
 
@@ -150,104 +150,103 @@
   <!-- HERO -->
   <section id="home" class="hero" aria-labelledby="homeTitle">
     <div class="hero-left">
-      <h2 id="homeTitle">Collect the legends — miniature racing keychains</h2>
-      <p id="heroSubtitle">Handcrafted, detailed and ready for collectors. Choose a legendary car, add a personal engraving and order safely.</p>
+      <h2 id="homeTitle">Colecciona acabados legendarios — miniature racing keychains</h2>
+      <p id="heroSubtitle"> Hechos a manos, detallados y listos para coleccionar. Escoge uno de nuestros drops con los acabados en color mas icónicos del mundo de motor, añade una personalización y pidelo de manera segura.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="cta" onclick="scrollToSection('shop')">Browse the collection</button>
-        <button class="cta" onclick="openWishlist()">My Wishlist</button>
+        <button class="cta" onclick="scrollToSection('shop')">Busca la colección</button>
+        <button class="cta" onclick="openWishlist()">Mi lista de deseos</button>
       </div>
     </div>
     <div class="hero-right">
       <div class="hero-card">
-        <div style="font-size:22px">Limited Series</div>
-        <small style="color:#e8f4ff">Renault • Ferrari • Mercedes</small>
+        <div style="font-size:22px">Series Limitadas</div>
+        <small style="color:var(--black)">Colores que te recordarán a los mejores pilotos de la historia</small>
       </div>
     </div>
   </section>
 
   <!-- search & filters -->
   <div class="controls">
-    <input id="searchInput" type="search" placeholder="Search products..." oninput="renderProducts()" style="flex:1">
+    <input id="searchInput" type="search" placeholder="Buscar Drop..." oninput="renderProducts()" style="flex:1">
     <select id="filterColor" onchange="renderProducts()">
-      <option value="">All colors</option>
-      <option value="yellow">Yellow / Blue</option>
-      <option value="red">Red</option>
-      <option value="grey">Grey / Light Blue</option>
+      <option value="">Todos los colores</option>
+      <option value="yellow">Amarillo / Azul</option>
+      <option value="red">Rojo</option>
+      <option value="grey">Gris / Azul Turquesa</option>
     </select>
-    <div class="small">Sort:</div>
+    <div class="small">Ordenar:</div>
     <select id="sortSelect" onchange="renderProducts()">
-      <option value="default">Default</option>
-      <option value="price-asc">Price ↑</option>
-      <option value="price-desc">Price ↓</option>
+      <option value="default">Predeterminado</option>
+      <option value="price-asc">Precio ↑</option>
+      <option value="price-desc">Precio ↓</option>
     </select>
   </div>
 
   <!-- SHOP -->
-  <div class="section-title"><h3>Shop</h3><p>Available keychains — click one to inspect and order</p></div>
+  <div class="section-title"><h3>Tienda</h3><p>Llaveros disponibles — Haz click sobre uno para verlo y pedirlo</p></div>
   <section id="shop" class="grid"></section>
 
   <!-- Wishlist / Favorites panel (hidden by default) -->
   <div id="wishlistPanel" class="page-panel hidden" style="display:none">
-    <h3>Your Wishlist</h3>
+    <h3>Tu lista de deseos</h3>
     <div id="wishlistItems" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px"></div>
   </div>
 
   <!-- About -->
-  <div class="section-title"><h3>About</h3><p>Who we are and why we make these keychains</p></div>
+  <div class="section-title"><h3>About</h3><p>Sobre nosotros y por qué hacemos estos llaveros</p></div>
   <section id="about" class="card" style="padding:26px">
-    <h4 style="margin-top:0">About Racing Keychains</h4>
-    <p style="color:var(--muted)">We are a small team of motorsport fans and artisans. Each keychain is produced in small runs, painted and finished by hand, then inspected for quality. We focus on faithful color reproduction and durable metalwork so your miniature remains an heirloom.</p>
-    <p style="color:var(--muted)">We offer engraving, secure packaging and tracked shipping. Join our collector community — every release has a limited number of pieces.</p>
+    <h4 style="margin-top:0">Sobre Racing Keychains</h4>
+    <p style="color:var(--muted)">Somos un pequeño grupo de aficionados al motor y ahora gracias a esto, artesanos. Cada llavero esta pintado y detallado a mano. Nos centramos en hacer una eleccion y representacion de los colores fiel y reconocible de nuestros vehiculos favoritos. A su vez tratamos de hacer que estos pequeños coleccionables sean duraderos y perfectos para lucirlos junto a tus llaves.</p>
+    <p style="color:var(--muted)">Ofrecemos personalizacion, embalaje seguro y seguimiento del envio. Unete a nuestra comunidad coleccionista o hazle un regalo a un amante del motor, ¡seguro que le va a encantar!— Cada Drop cuenta con piezas limitadas, ¡No te quedes sin la tuya!.</p>
   </section>
 
   <!-- Shipping -->
-  <div class="section-title"><h3>Shipping & Returns</h3><p>Important information about delivery and returns</p></div>
+  <div class="section-title"><h3>Shipping & Returns</h3><p>Información importante sobre el envio y las devoluciones</p></div>
   <section id="shipping" class="card" style="padding:26px">
-    <h4 style="margin-top:0">Shipping & Returns</h4>
-    <p style="color:var(--muted)">We ship worldwide. Standard EU shipping: 3-7 business days. International: 7-15 business days. All keychains are shipped with tracking. Returns accepted within 14 days if unused—contact us for instructions.</p>
-    <p style="color:var(--muted)"><strong>Packaging:</strong> Each keychain includes a protective box and certificate of authenticity.</p>
+    <h4 style="margin-top:0">Envios y Devoluciones</h4>
+    <p style="color:var(--muted)">(Demo)We ship worldwide. Standard EU shipping: 3-7 business days. International: 7-15 business days. All keychains are shipped with tracking. Returns accepted within 14 days if unused—contact us for instructions.</p>
+    <p style="color:var(--muted)"><strong>Packaging:</strong> (Demo)Each keychain includes a protective box and certificate of authenticity.</p>
   </section>
 
   <!-- Contact -->
-  <div class="section-title"><h3>Contact</h3><p>Get in touch</p></div>
+  <div class="section-title"><h3>Contacto</h3><p>Mantente en contacto</p></div>
   <section id="contact" class="card" style="padding:22px">
-    <h4 style="margin-top:0">Contact us</h4>
-    <p style="color:var(--muted)">Questions? Write to us and we'll reply within 24-48 hours.</p>
+    <h4 style="margin-top:0">Contactanos</h4>
+    <p style="color:var(--muted)"> ¿Tienes alguna pregunta? Escribenos y te contestaremos lo antes posible.</p>
     <form id="contactForm" style="display:flex;flex-direction:column;gap:10px;max-width:720px">
-      <input name="name" placeholder="Your name" required>
+      <input name="name" placeholder="Tu nombre" required>
       <input name="email" type="email" placeholder="Email" required>
-      <textarea name="message" rows="5" placeholder="Message" required></textarea>
+      <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
       <div style="display:flex;gap:10px">
-        <button type="submit" class="btn btn-primary">Send Message</button>
-        <button type="button" class="btn btn-outline" onclick="alert('Phone: +34 600 000 000 (demo)')">Call</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="button" class="btn btn-outline" onclick="alert('Phone: +34 600 000 000 (demo)')">LLamanos</button>
       </div>
     </form>
   </section>
 
   <footer>
-    © 2025 Legendary Racing Keychains — handcrafted miniatures • <span id="ordersCount">0</span> orders placed (local demo)
+    © 2025 Legendary Racing Keychains — Miniaturas hechas a mano • <span id="ordersCount">0</span> orders placed (local demo)
   </footer>
 </main>
 
 <!-- CART DRAWER -->
 <div id="cartDrawer" class="cart-drawer" aria-hidden="true" role="dialog">
   <div class="cart-header">
-    <div><strong id="cartTitle">Your Cart</strong> <span id="cartUser"></span></div>
-    <div><button class="btn btn-outline" onclick="toggleCart()">Close</button></div>
+    <div><strong id="cartTitle">Tu carrito</strong> <span id="cartUser"></span></div>
+    <div><button class="btn btn-outline" onclick="toggleCart()">Cerrar</button></div>
   </div>
   <div id="cartItems"></div>
   <div class="cart-summary">
-    <div style="display:flex;justify-content:space-between"><div>Subtotal</div><div id="cartSubtotal">€0.00</div></div>
-    <div style="display:flex;justify-content:space-between;margin-top:6px"><div>Shipping</div><div id="cartShipping">€2.99</div></div>
+    <div style="display:flex;justify-content:space-between"><div>Subtotal</div><div id="cartSubtotal">0.00€</div></div>
+    <div style="display:flex;justify-content:space-between;margin-top:6px"><div>Envio</div><div id="cartShipping">2.99€</div></div>
     <div style="display:flex;justify-content:space-between;margin-top:6px;font-weight:700"><div>Total</div><div id="cartTotal">€0.00</div></div>
 
     <div class="checkout-row">
-     <button class="btn btn-primary" onclick="checkoutReal()">Pay with Stripe (Demo)</button>
+     <button class="btn btn-primary" onclick="checkoutReal()">Pagar(Demo)</button>
     </div>
     <div style="margin-top:10px">
       <button class="btn btn-outline" onclick="saveCartAsOrder()">Place order (local)</button>
     </div>
-
     <div style="margin-top:10px">
       <small class="small-note">Demo: orders are stored locally and can be sent to Netlify Forms when hosted on Netlify.</small>
     </div>
@@ -259,7 +258,8 @@
   <div class="modal" role="document" aria-modal="true">
     <div class="modal-left">
       <div class="modal-images">
-        <img id="mainImage" class="main-img" src="" alt="Main product image">
+        <img id="mainImage" class="main-img" src="">
+" alt="Main product image">
         <div class="thumbs" id="thumbs"></div>
       </div>
     </div>
@@ -270,21 +270,21 @@
       <div class="color-blocks" id="colorBlocks"></div>
 
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-        <div style="font-weight:700;font-size:20px" id="modalPrice">€0.00</div>
-        <div style="color:var(--muted);font-size:13px">VAT included</div>
+        <div style="font-weight:700;font-size:20px" id="modalPrice">0.00€</div>
+        <div style="color:var(--muted);font-size:13px">IVA incluido</div>
       </div>
 
       <div style="display:flex;gap:10px">
-        <input id="engravingInput" placeholder="Engraving text (optional)" style="flex:1;padding:10px;border-radius:10px;border:1px solid #eef5ff">
+        <input id="engravingInput" placeholder="(Demo)Personalización Opcional, Ej: #5, Alo " style="flex:1;padding:10px;border-radius:10px;border:1px solid #eef5ff">
         <select id="qtySelect" style="padding:10px;border-radius:10px;border:1px solid #eef5ff">
           <option value="1">1</option><option value="2">2</option><option value="3">3</option>
         </select>
       </div>
 
       <div style="display:flex;gap:10px;margin-top:12px">
-        <button class="btn btn-primary" id="addToCartBtn">Add to cart</button>
-        <button class="btn btn-outline" id="addToWishlistBtn">Wishlist</button>
-        <button class="btn btn-outline" onclick="closeModal()">Close</button>
+        <button class="btn btn-primary" id="addToCartBtn">Añadir al carrito</button>
+        <button class="btn btn-outline" id="addToWishlistBtn">Lista de deseos</button>
+        <button class="btn btn-outline" onclick="closeModal()">Cerrar</button>
       </div>
 
       <div id="orderStatus" class="small-note" style="margin-top:12px;color:green"></div>
@@ -296,14 +296,14 @@
 <div id="authOverlay" class="overlay" aria-hidden="true">
   <div class="modal" style="max-width:420px">
     <div style="padding:20px">
-      <h3 id="authTitle">Account</h3>
+      <h3 id="authTitle">Cuenta</h3>
       <div id="authContent">
         <div style="display:flex;flex-direction:column;gap:8px">
           <input id="authName" placeholder="Your name" />
           <input id="authPass" placeholder="Password (demo)" type="password" />
           <div style="display:flex;gap:8px;margin-top:8px">
-            <button class="btn btn-primary" onclick="doLogin()">Login</button>
-            <button class="btn btn-outline" onclick="closeAuth()">Cancel</button>
+            <button class="btn btn-primary" onclick="doLogin()">Iniciar Sesión</button>
+            <button class="btn btn-outline" onclick="closeAuth()">Cancelar</button>
           </div>
         </div>
       </div>
@@ -325,45 +325,17 @@
 const PRODUCTS = {
   alonso: {
     id:'alonso',
-    title:'Miniature Renault R25 (2005)',
-    price:19.99,
-    desc:'Replica inspired by the Renault R25 (2005). Solid yellow and blue blocks, premium metal ring and high-detail paint.',
+    title:'Drop 001',
+    price:7.99,
+    desc:'Inspirado en el coche que ilusionó a todos los españoles en la decada de los 2000s. Colores amarillo y azul metalizados.', 
     images:[
-      'https://via.placeholder.com/900x600.png?text=Alonso+1',
+      'images/drop001.jpg',
       'https://via.placeholder.com/900x600.png?text=Alonso+2',
       'https://via.placeholder.com/900x600.png?text=Alonso+3'
     ],
     colors:[ {label:'Yellow', hex:'#FFFF00'}, {label:'Blue', hex:'#00AFFF'} ],
-    tags:['yellow','renault'],
-    priceStr:'€19.99'
-  },
-  schumacher: {
-    id:'schumacher',
-    title:'Miniature Ferrari F2000 (2000)',
-    price:19.99,
-    desc:'Classic red miniature inspired by early 2000s Ferrari livery. Gloss finish and premium key ring.',
-    images:[
-      'https://via.placeholder.com/900x600.png?text=Schumacher+1',
-      'https://via.placeholder.com/900x600.png?text=Schumacher+2',
-      'https://via.placeholder.com/900x600.png?text=Schumacher+3'
-    ],
-    colors:[ {label:'Red', hex:'#FF0000'} ],
-    tags:['red','ferrari'],
-    priceStr:'€19.99'
-  },
-  hamilton: {
-    id:'hamilton',
-    title:'Miniature Mercedes W11 (2020)',
-    price:21.99,
-    desc:'Silver & light-blue miniature inspired by modern Mercedes livery. Chrome-like parts and fine details.',
-    images:[
-      'https://via.placeholder.com/900x600.png?text=Hamilton+1',
-      'https://via.placeholder.com/900x600.png?text=Hamilton+2',
-      'https://via.placeholder.com/900x600.png?text=Hamilton+3'
-    ],
-    colors:[ {label:'Grey', hex:'#9aa3ad'}, {label:'Light Blue', hex:'#cfefff'} ],
-    tags:['grey','mercedes'],
-    priceStr:'€21.99'
+    tags:['yellow'],
+    priceStr:'7.99€'
   }
 };
 
@@ -424,10 +396,10 @@ function renderProducts(){
     const desc = document.createElement('p'); desc.textContent = p.desc;
     const price = document.createElement('div'); price.className='price'; price.textContent = p.priceStr;
     const row = document.createElement('div'); row.className='row';
-    const btnView = document.createElement('button'); btnView.className='btn btn-primary'; btnView.textContent='View & Order';
+    const btnView = document.createElement('button'); btnView.className='btn btn-primary'; btnView.textContent='Ver y Pedir';
     btnView.setAttribute('data-product', p.id);
     btnView.addEventListener('click', ()=> openModalFor(p.id));
-    const btnWish = document.createElement('button'); btnWish.className='btn btn-outline'; btnWish.textContent='Wishlist';
+    const btnWish = document.createElement('button'); btnWish.className='btn btn-outline'; btnWish.textContent='Lista de deseos';
     btnWish.addEventListener('click', ()=> {
       toggleWishlist(p.id);
       showToast('Added to wishlist');
