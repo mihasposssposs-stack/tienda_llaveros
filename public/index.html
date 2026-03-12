@@ -125,11 +125,11 @@
   </div>
 
   <nav>
-    <a href="#" data-nav="home" class="navlink">Inicio</a>
-    <a href="#" data-nav="shop" class="navlink">Tienda</a>
-    <a href="#" data-nav="about" class="navlink">Sobre nosotros</a>
-    <a href="#" data-nav="shipping" class="navlink">Envios</a>
-    <a href="#" data-nav="contact" class="navlink">Contacto</a>
+    <a href="#home" data-nav="home" class="navlink">Inicio</a>
+    <a href="#shop" data-nav="shop" class="navlink">Tienda</a>
+    <a href="#about" data-nav="about" class="navlink">Sobre nosotros</a>
+    <a href="#shipping" data-nav="shipping" class="navlink">Envios</a>
+    <a href="#contact" data-nav="contact" class="navlink">Contacto</a>
   </nav>
 
   <div class="tools">
@@ -209,23 +209,47 @@
   </section>
 
   <!-- Contact -->
-  <div class="section-title"><h3>Contacto</h3><p>Mantente en contacto</p></div>
-  <section id="contact" class="card" style="padding:22px">
-    <h4 style="margin-top:0">Contactanos</h4>
-    <p style="color:var(--muted)"> ¿Tienes alguna pregunta? Escribenos y te contestaremos lo antes posible.</p>
-    <form id="contactForm" style="display:flex;flex-direction:column;gap:10px;max-width:720px">
-      <input name="name" placeholder="Tu nombre" required>
-      <input name="email" type="email" placeholder="Email" required>
-      <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
-      <div style="display:flex;gap:10px">
-        <button type="submit" class="btn btn-primary">Enviar</button>
-        <button type="button" class="btn btn-outline" onclick="alert('Phone: +34 600 000 000 (demo)')">LLamanos</button>
-      </div>
-    </form>
-  </section>
+<div class="section-title">
+  <h3>Contacto</h3>
+  <p>Mantente en contacto</p>
+</div>
 
+<section id="contact" class="card" style="padding:22px">
+
+  <h4 style="margin-top:0">Contactanos</h4>
+
+  <p style="color:var(--muted)">
+  ¿Tienes alguna pregunta? Escríbenos y te contestaremos lo antes posible.
+  </p>
+
+  <form id="contactForm" style="display:flex;flex-direction:column;gap:10px;max-width:720px">
+
+    <input name="name" placeholder="Tu nombre" required>
+
+    <input name="email" type="email" placeholder="Email" required>
+
+    <textarea name="message" rows="5" placeholder="Mensaje" required></textarea>
+
+    <div style="display:flex;gap:10px">
+
+      <button type="submit" class="btn btn-primary">
+      Enviar
+      </button>
+
+      <button type="button" class="btn btn-outline"
+      onclick="alert('Phone: +34 600 000 000')">
+
+      Llamanos
+
+      </button>
+
+    </div>
+
+  </form>
+
+</section>
   <footer>
-    © 2025 Legendary Racing Keychains — Miniaturas hechas a mano • <span id="ordersCount">0</span> orders placed (local demo)
+    © 2025 Legendary Racing Keychains — Miniaturas hechas a mano •
   </footer>
 </main>
 
@@ -258,8 +282,7 @@
   <div class="modal" role="document" aria-modal="true">
     <div class="modal-left">
       <div class="modal-images">
-        <img id="mainImage" class="main-img" src="">
-" alt="Main product image">
+        <img id="mainImage" class="main-img" src="" alt="Main product image">
         <div class="thumbs" id="thumbs"></div>
       </div>
     </div>
@@ -599,7 +622,7 @@ function saveCartAsOrder(){
   let orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
   orders.push(order);
   localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-  updateOrdersCount();
+
   showToast('Order saved locally');
 
   // try to submit to Netlify Forms (only works when hosted on Netlify)
@@ -661,21 +684,11 @@ function doLogin(){
 }
 
 /* ---------- Small utilities ---------- */
-function updateOrdersCount(){
-  const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
-  document.getElementById('ordersCount').textContent = orders.length;
-}
-updateOrdersCount();
 
 /* ---------- Attach events & init ---------- */
 document.querySelectorAll('.navlink').forEach(a=>{ a.addEventListener('click',(e)=>{ e.preventDefault(); const t=a.getAttribute('data-nav'); scrollToSection(t); }); });
 function scrollToSection(id){ const el=document.getElementById(id); if(!el) return; window.scrollTo({top: el.getBoundingClientRect().top + window.pageYOffset - 80, behavior:'smooth'}); }
 
-document.getElementById('contactForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  showToast('Message sent (demo).');
-  this.reset();
-});
 
 document.getElementById('langToggle').addEventListener('click', ()=>{
   LANG = LANG === 'es' ? 'en' : 'es';
@@ -699,6 +712,31 @@ document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ closeModal()
   updateCartCount();
   renderCart();
 })();
+
+const form = document.getElementById("contactForm");
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+  const formData = new FormData(form);
+  const data = {
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message")
+  };
+  try {
+    const response = await fetch("/send-message",{
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body: JSON.stringify(data)
+    });
+    const result = await response.text();
+    showToast("Mensaje enviado correctamente");
+    form.reset();
+  } catch(err) {
+    console.error(err);
+    showToast("Error al enviar mensaje");
+  }
+});
+
 </script>
 </body>
 </html>
