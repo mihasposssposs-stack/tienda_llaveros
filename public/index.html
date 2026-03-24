@@ -35,9 +35,23 @@
     background:linear-gradient(90deg,#ffffff,#ffffff);
     display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e6eefc;z-index:1000;
   }
-  .brand{display:flex;align-items:center; gap:12px;}
-  .logo{width:48px;height:48px;border-radius:10px;background:var(--accent); color:#fff; display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;box-shadow:0 8px 20px rgba(0,0,0,0.06);}
-  .brand h1{font-size:16px;margin:0;color:var(--black);font-weight:700;}
+  .brand{display:flex;align-items:center; gap:5px;}
+  .logo {
+  width: 200px;
+  height: 150px;
+}
+
+.brandTitle h1 {
+  margin: 200px;
+  font-size: 16px;
+}
+
+.brandSubtitle {
+  font-size: 12px;
+  color: var(--muted);
+}
+ 
+ .brand h1{font-size:16px;margin:0;color:var(--black);font-weight:700;}
   nav{display:flex;gap:12px;align-items:center}
   nav a{color:var(--black); font-weight:600; font-size:14px; padding:8px 10px; border-radius:8px;}
   nav a:hover{background:#f0f6ff;color:var(--accent-dark)}
@@ -51,7 +65,8 @@
   .wrap{max-width:12000;margin:100px auto 80px;padding:0 20px;}
 
   /* Hero */
-  .hero{display:flex;gap:20px;align-items:center;background:linear-gradient(180deg,#ffffff,#fbfdff);padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
+  
+.hero{display:flex;gap:20px;align-items:center;background:linear-gradient(180deg,#ffffff,#fbfdff);padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,0.06)}
   .hero-left{flex:1}
   .hero h2{margin:0;font-size:28px;color:var(--accent-dark)}
   .hero p{color:var(--muted);margin:8px 0 16px}
@@ -99,6 +114,12 @@
   .overlay.show{display:flex}
   .modal{width:100%;max-width:1000px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.35);display:flex;gap:0;min-height:420px}
   .modal-left{flex:1;padding:20px;background:linear-gradient(180deg,#ffffff,#f4fbff)}
+.modal-left img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}
   .modal-right{flex:1;padding:28px;background:#fff}
   .thumbs{display:flex;gap:8px;margin-top:10px}
   .thumbs img{width:72px;height:48px;object-fit:cover;border-radius:8px;cursor:pointer;border:3px solid transparent}
@@ -106,10 +127,20 @@
 
   footer{margin-top:40px;padding:32px;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f0f6ff}
 
-  @media(max-width:900px){
+  @media(max-width:768px){
     .hero{flex-direction:column;text-align:center}
     .cart-drawer{width:100%;transform:translateY(110%);right:auto;left:0;bottom:0;top:auto;height:60vh}
   }
+
+.banner {
+  width: 100%;
+  height: 400px;
+  background-image: url("images/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-top: 72px; /* para separarlo del header */
+}
+
 </style>
 <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -117,10 +148,10 @@
 
 <header>
   <div class="brand">
-    <div class="logo">LRK</div>
+ 	<img src="images/logo.png" class="logo" alt="Logo">
     <div>
       <h1 id="brandTitle">Legendary Racing Keychains</h1>
-      <div style="font-size:12px;color:var(--muted)" id="brandSubtitle">Miniaturas Icónicas — customización disponible</div>
+      <div style="font-size:12px;color:var(--muted)" id="brandSubtitle">Miniaturas Icónicas</div>
     </div>
   </div>
 
@@ -146,7 +177,13 @@
   </div>
 </header>
 
+
+</section>
+
+<section class="banner"></section> 
+
 <main class="wrap">
+
   <!-- HERO -->
   <section id="home" class="hero" aria-labelledby="homeTitle">
     <div class="hero-left">
@@ -189,7 +226,7 @@
   <!-- Wishlist / Favorites panel (hidden by default) -->
   <div id="wishlistPanel" class="page-panel hidden" style="display:none">
     <h3>Tu lista de deseos</h3>
-    <div id="wishlistItems" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px"></div>
+    <div id="wishlistItems" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,400px));gap:12px;margin-top:12px"></div>
   </div>
 
   <!-- About -->
@@ -349,16 +386,16 @@ const PRODUCTS = {
   alonso: {
     id:'alonso',
     title:'Drop 001',
-    price:7.99,
+    price:'4.95',
     desc:'Inspirado en el coche que ilusionó a todos los españoles en la decada de los 2000s. Colores amarillo y azul metalizados.', 
     images:[
       'images/drop001.jpg',
-      'https://via.placeholder.com/900x600.png?text=Alonso+2',
-      'https://via.placeholder.com/900x600.png?text=Alonso+3'
+      'images/drop001-2.jpg',
+      'images/drop001-3.jpg'
     ],
     colors:[ {label:'Yellow', hex:'#FFFF00'}, {label:'Blue', hex:'#00AFFF'} ],
     tags:['yellow'],
-    priceStr:'7.99€'
+    priceStr:'4.95€'
   }
 };
 
@@ -555,7 +592,7 @@ function renderCart(){
           <div style="font-weight:700">${p.title}</div>
           <div style="color:var(--muted);font-size:13px">${p.priceStr} × <input style="width:48px;padding:4px;margin-left:8px;border-radius:6px;border:1px solid #eef5ff" value="${CART[id].qty}" onchange="setCartItemQty('${id}', parseInt(this.value)||1)" /></div>
           <div style="margin-top:6px;color:var(--muted);font-size:13px">Engraving: ${CART[id].engraving||'—'}</div>
-          <div style="margin-top:8px"><button class="btn btn-outline" onclick="removeCartItem('${id}')">Remove</button></div>
+          <div style="margin-top:8px"><button class="btn btn-outline" onclick="removeCartItem('${id}')">Borrar</button></div>
         </div>`;
       container.appendChild(itm);
     });
@@ -598,8 +635,8 @@ function renderWishlistItems(){
     card.innerHTML = `<img src="${p.images[0]}" style="height:120px"><h4 style="margin-top:8px">${p.title}</h4>
       <div style="color:var(--muted)">${p.priceStr}</div>
       <div style="margin-top:8px">
-        <button class="btn btn-primary" onclick="openModalFromWishlist('${id}')">View</button>
-        <button class="btn btn-outline" onclick="toggleWishlist('${id}')">Remove</button>
+        <button class="btn btn-primary" onclick="openModalFromWishlist('${id}')">Ver</button>
+        <button class="btn btn-outline" onclick="toggleWishlist('${id}')">Borrar</button>
       </div>`;
     panel.appendChild(card);
   });
@@ -696,7 +733,7 @@ document.getElementById('langToggle').addEventListener('click', ()=>{
   document.getElementById('langToggle').textContent = LANG.toUpperCase();
   // minimal translations for a few labels
   document.getElementById('homeTitle').textContent = LANG==='en' ? 'Collect the legends — miniature racing keychains' : 'Collect the legends — miniature racing keychains';
-  document.getElementById('brandSubtitle').textContent = LANG==='en' ? 'Iconic miniatures — custom engraving available' : 'Iconic miniatures — custom engraving available';
+  document.getElementById('brandSubtitle').textContent = LANG==='en' ? 'Iconic miniatures' : 'Iconic miniatures';
   showToast('Language: ' + LANG.toUpperCase());
 });
 
