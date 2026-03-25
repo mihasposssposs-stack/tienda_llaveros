@@ -205,6 +205,8 @@
 
 </style>
 <script src="https://js.stripe.com/v3/"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init("J2imPl6BuscP2cOUR");</script>
 </head>
 <body>
 
@@ -829,23 +831,18 @@ const form = document.getElementById("contactForm");
 form.addEventListener("submit", async function(e){
   e.preventDefault();
   const formData = new FormData(form);
-  const data = {
+  const templateParams = {
     name: formData.get("name"),
     email: formData.get("email"),
     message: formData.get("message")
   };
   try {
-    const response = await fetch("/send-message",{
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
-      body: JSON.stringify(data)
-    });
-    const result = await response.text();
-    showToast("Mensaje enviado correctamente");
+    await emailjs.send("service_z2a966h", "template_e7p2yhz", templateParams);
+    showToast("✅ Mensaje enviado correctamente");
     form.reset();
   } catch(err) {
-    console.error(err);
-    showToast("Error al enviar mensaje");
+    console.error("EmailJS error:", err);
+    showToast("❌ Error al enviar mensaje");
   }
 });
 
