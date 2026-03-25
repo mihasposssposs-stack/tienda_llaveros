@@ -127,9 +127,71 @@
 
   footer{margin-top:40px;padding:32px;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f0f6ff}
 
+  /* ── HAMBURGER MENU ── */
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+  .hamburger span{display:block;width:22px;height:2px;background:var(--black);border-radius:2px;transition:all .25s}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+  .mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;background:#fff;border-bottom:1px solid #e6eefc;z-index:999;flex-direction:column;padding:12px 20px;gap:4px;box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+  .mobile-nav.open{display:flex}
+  .mobile-nav a{padding:12px 8px;font-weight:600;font-size:15px;color:var(--black);border-bottom:1px solid #f0f6ff}
+  .mobile-nav a:last-child{border-bottom:none}
+
   @media(max-width:768px){
-    .hero{flex-direction:column;text-align:center}
-    .cart-drawer{width:100%;transform:translateY(110%);right:auto;left:0;bottom:0;top:auto;height:60vh}
+    /* Header */
+    header{padding:10px 14px;height:62px}
+    .logo{width:48px;height:48px}
+    #brandTitle{font-size:13px !important}
+    nav{display:none}
+    .hamburger{display:flex}
+    .tools gap{gap:6px}
+    .icon-btn{padding:6px;font-size:13px}
+    #langToggle{display:none}
+
+    /* Adjust main wrap for smaller header */
+    .wrap{margin-top:70px}
+    .banner{margin-top:62px;height:220px}
+
+    /* Hero */
+    .hero{flex-direction:column;text-align:center;padding:18px}
+    .hero h2{font-size:20px}
+
+    /* Grid cards */
+    .grid{grid-template-columns:1fr !important}
+    .card img{height:220px}
+
+    /* Cart drawer — full screen from bottom */
+    .cart-drawer{
+      width:100%;
+      transform:translateY(110%);
+      right:auto;left:0;bottom:0;top:auto;
+      height:80vh;
+      border-radius:20px 20px 0 0;
+      padding:16px;
+    }
+    .cart-drawer.open{transform:translateY(0)}
+
+    /* Modal — stack vertically */
+    .modal{
+      flex-direction:column;
+      max-width:100% !important;
+      min-height:unset;
+      max-height:90vh;
+      overflow-y:auto;
+      border-radius:16px;
+    }
+    .modal-left{padding:14px}
+    .modal-left img{height:200px}
+    .modal-right{padding:16px}
+    .thumbs img{width:52px;height:36px}
+
+    /* Overlay padding so modal doesn't touch edges */
+    .overlay{padding:10px;align-items:flex-end}
+
+    /* Wishlist grid */
+    #wishlistItems{grid-template-columns:1fr !important}
   }
 
 .banner {
@@ -163,6 +225,11 @@
     <a href="#contact" data-nav="contact" class="navlink">Contacto</a>
   </nav>
 
+  <!-- Hamburger (mobile only) -->
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú" onclick="toggleMobileNav()">
+    <span></span><span></span><span></span>
+  </button>
+
   <div class="tools">
     <button class="icon-btn" id="wishlistBtn" title="Lista de deseos" onclick="openWishlist()">
       ♥ <span class="count" id="wishlistCount" style="display:none">0</span>
@@ -177,6 +244,14 @@
   </div>
 </header>
 
+<!-- Mobile nav panel -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#home" onclick="closeMobileNav();scrollToSection('home')">Inicio</a>
+  <a href="#shop" onclick="closeMobileNav();scrollToSection('shop')">Tienda</a>
+  <a href="#about" onclick="closeMobileNav();scrollToSection('about')">Sobre nosotros</a>
+  <a href="#shipping" onclick="closeMobileNav();scrollToSection('shipping')">Envíos</a>
+  <a href="#contact" onclick="closeMobileNav();scrollToSection('contact')">Contacto</a>
+</nav>
 
 </section>
 
@@ -774,6 +849,17 @@ form.addEventListener("submit", async function(e){
   }
 });
 
+/* ---------- Mobile nav ---------- */
+function toggleMobileNav(){
+  const nav = document.getElementById('mobileNav');
+  const btn = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMobileNav(){
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
 </script>
-</body>
 </html>
