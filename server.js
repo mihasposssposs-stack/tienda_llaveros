@@ -31,8 +31,8 @@ app.post("/create-checkout-session", async (req, res) => {
       })),
       mode: "payment",
       // ✅ Cambia esto por la URL real de tu web en Render
-      success_url: `${process.env.BASE_URL}/success.html`,
-      cancel_url: `${process.env.BASE_URL}/index.html`,
+      success_url: `${https://tienda-llaveros.onrender.com/}/success.html`,
+      cancel_url: `${https://tienda-llaveros.onrender.com/}/index.html`,
     });
 
     res.json({ id: session.id });
