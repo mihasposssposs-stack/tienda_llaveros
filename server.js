@@ -1,3 +1,4 @@
+
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 const express = require("express");
@@ -31,8 +32,8 @@ app.post("/create-checkout-session", async (req, res) => {
       })),
       mode: "payment",
       // ✅ Cambia esto por la URL real de tu web en Render
-      success_url: `${https://tienda-llaveros.onrender.com/}/success.html`,
-      cancel_url: `${https://tienda-llaveros.onrender.com/}/index.html`,
+      success_url: `https://tienda-llaveros.onrender.com/success.html`,
+      cancel_url: `https://tienda-llaveros.onrender.com/index.html`,
     });
 
     res.json({ id: session.id });
