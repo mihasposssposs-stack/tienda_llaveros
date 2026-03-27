@@ -265,7 +265,7 @@
   <!-- HERO -->
   <section id="home" class="hero" aria-labelledby="homeTitle">
     <div class="hero-left">
-      <h2 id="homeTitle">Colecciona acabados legendarios — miniature racing keychains</h2>
+      <h2 id="homeTitle">Colecciona acabados legendarios — llaveros de coches de carreras</h2>
       <p id="heroSubtitle"> Hechos a manos, detallados y listos para coleccionar. Escoge uno de nuestros drops con los acabados en color mas icónicos del mundo de motor, añade una personalización y pidelo de manera segura.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <button class="cta" onclick="scrollToSection('shop')">Busca la colección</button>
@@ -308,7 +308,7 @@
   </div>
 
   <!-- About -->
-  <div class="section-title"><h3>About</h3><p>Sobre nosotros y por qué hacemos estos llaveros</p></div>
+  <div class="section-title"><h3>Sobre nosotros</h3><p>Sobre nosotros y por qué hacemos estos llaveros</p></div>
   <section id="about" class="card" style="padding:26px">
     <h4 style="margin-top:0">Sobre Racing Keychains</h4>
     <p style="color:var(--muted)">Somos un pequeño grupo de aficionados al motor y ahora gracias a esto, artesanos. Cada llavero esta pintado y detallado a mano. Nos centramos en hacer una eleccion y representacion de los colores fiel y reconocible de nuestros vehiculos favoritos. A su vez tratamos de hacer que estos pequeños coleccionables sean duraderos y perfectos para lucirlos junto a tus llaves.</p>
@@ -316,11 +316,11 @@
   </section>
 
   <!-- Shipping -->
-  <div class="section-title"><h3>Shipping & Returns</h3><p>Información importante sobre el envio y las devoluciones</p></div>
+  <div class="section-title"><h3>Envíos y Devoluciones</h3><p>Información importante sobre el envío y las devoluciones</p></div>
   <section id="shipping" class="card" style="padding:26px">
-    <h4 style="margin-top:0">Envios y Devoluciones</h4>
-    <p style="color:var(--muted)">(Demo)We ship worldwide. Standard EU shipping: 3-7 business days. International: 7-15 business days. All keychains are shipped with tracking. Returns accepted within 14 days if unused—contact us for instructions.</p>
-    <p style="color:var(--muted)"><strong>Packaging:</strong> (Demo)Each keychain includes a protective box and certificate of authenticity.</p>
+    <h4 style="margin-top:0">Envíos y Devoluciones</h4>
+    <p style="color:var(--muted)">Enviamos a todo el mundo. Envío estándar en la UE: 3-7 días laborables. Internacional: 7-15 días laborables. Todos los llaveros se envían con seguimiento. Se aceptan devoluciones en un plazo de 14 días si el producto no ha sido usado — contáctanos para más información.</p>
+    <p style="color:var(--muted)"><strong>Embalaje:</strong> Cada llavero incluye una caja protectora y certificado de autenticidad.</p>
   </section>
 
   <!-- Contact -->
@@ -381,13 +381,13 @@
     <div style="display:flex;justify-content:space-between;margin-top:6px;font-weight:700"><div>Total</div><div id="cartTotal">€0.00</div></div>
 
     <div class="checkout-row">
-     <button class="btn btn-primary" onclick="checkoutReal()">Pagar(Demo)</button>
+     <button class="btn btn-primary" onclick="checkoutReal()">Pagar</button>
     </div>
     <div style="margin-top:10px">
-      <button class="btn btn-outline" onclick="saveCartAsOrder()">Place order (local)</button>
+      <button class="btn btn-outline" onclick="saveCartAsOrder()">Realizar pedido</button>
     </div>
     <div style="margin-top:10px">
-      <small class="small-note">Demo: orders are stored locally and can be sent to Netlify Forms when hosted on Netlify.</small>
+      <small class="small-note">Los pedidos se guardan localmente hasta que se procesa el pago.</small>
     </div>
   </div>
 </div>
@@ -397,7 +397,7 @@
   <div class="modal" role="document" aria-modal="true">
     <div class="modal-left">
       <div class="modal-images">
-        <img id="mainImage" class="main-img" src="" alt="Main product image">
+        <img id="mainImage" class="main-img" src="" alt="Imagen principal del producto">
         <div class="thumbs" id="thumbs"></div>
       </div>
     </div>
@@ -413,7 +413,7 @@
       </div>
 
       <div style="display:flex;gap:10px">
-        <input id="engravingInput" placeholder="(Demo)Personalización Opcional, Ej: #5, Alo " style="flex:1;padding:10px;border-radius:10px;border:1px solid #eef5ff">
+        <input id="engravingInput" placeholder="Personalización opcional, ej: #5, Alo" style="flex:1;padding:10px;border-radius:10px;border:1px solid #eef5ff">
         <select id="qtySelect" style="padding:10px;border-radius:10px;border:1px solid #eef5ff">
           <option value="1">1</option><option value="2">2</option><option value="3">3</option>
         </select>
@@ -437,8 +437,8 @@
       <h3 id="authTitle">Cuenta</h3>
       <div id="authContent">
         <div style="display:flex;flex-direction:column;gap:8px">
-          <input id="authName" placeholder="Your name" />
-          <input id="authPass" placeholder="Password (demo)" type="password" />
+          <input id="authName" placeholder="Tu nombre" />
+          <input id="authPass" placeholder="Contraseña" type="password" />
           <div style="display:flex;gap:8px;margin-top:8px">
             <button class="btn btn-primary" onclick="doLogin()">Iniciar Sesión</button>
             <button class="btn btn-outline" onclick="closeAuth()">Cancelar</button>
@@ -540,7 +540,7 @@ function renderProducts(){
     const btnWish = document.createElement('button'); btnWish.className='btn btn-outline'; btnWish.textContent='Lista de deseos';
     btnWish.addEventListener('click', ()=> {
       toggleWishlist(p.id);
-      showToast('Added to wishlist');
+      showToast('Añadido a favoritos');
     });
     row.appendChild(btnView); row.appendChild(btnWish);
 
@@ -606,13 +606,13 @@ function openModalFor(id){
     const engraving = document.getElementById('engravingInput').value.trim();
     const qty = parseInt(document.getElementById('qtySelect').value || '1');
     addToCart(p.id, qty, engraving);
-    showToast('Added to cart');
+    showToast('Añadido al carrito');
     renderCart();
     closeModal();
   };
   document.getElementById('addToWishlistBtn').onclick = ()=>{
     toggleWishlist(p.id);
-    showToast('Added to wishlist');
+    showToast('Añadido a favoritos');
   };
   overlay.classList.add('show');
 }
@@ -659,7 +659,7 @@ function renderCart(){
   container.innerHTML='';
   const {subtotal, items} = calculateCart();
   if(items === 0){
-    container.innerHTML = '<div style="padding:20px;color:var(--muted)">Your cart is empty.</div>';
+    container.innerHTML = '<div style="padding:20px;color:var(--muted)">Tu carrito está vacío.</div>';
   } else {
     Object.keys(CART).forEach(id=>{
       const p = PRODUCTS[id];
@@ -669,7 +669,7 @@ function renderCart(){
         <div class="meta">
           <div style="font-weight:700">${p.title}</div>
           <div style="color:var(--muted);font-size:13px">${p.priceStr} × <input style="width:48px;padding:4px;margin-left:8px;border-radius:6px;border:1px solid #eef5ff" value="${CART[id].qty}" onchange="setCartItemQty('${id}', parseInt(this.value)||1)" /></div>
-          <div style="margin-top:6px;color:var(--muted);font-size:13px">Engraving: ${CART[id].engraving||'—'}</div>
+          <div style="margin-top:6px;color:var(--muted);font-size:13px">Personalización: ${CART[id].engraving||'—'}</div>
           <div style="margin-top:8px"><button class="btn btn-outline" onclick="removeCartItem('${id}')">Borrar</button></div>
         </div>`;
       container.appendChild(itm);
@@ -702,7 +702,7 @@ function renderWishlistItems(){
   const panel = document.getElementById('wishlistItems');
   panel.innerHTML='';
   if(WISHLIST.length===0){
-    panel.innerHTML='<div style="color:var(--muted);padding:8px">No favourites yet.</div>';
+    panel.innerHTML='<div style="color:var(--muted);padding:8px">No tienes favoritos aún.</div>';
     return;
   }
   WISHLIST.forEach(id=>{
@@ -725,7 +725,7 @@ function openModalFromWishlist(id){ openModalFor(id); }
 /* ---------- Orders: save and Netlify Forms submission ---------- */
 function saveCartAsOrder(){
   const {subtotal, items} = calculateCart();
-  if(items===0){ showToast('Cart empty'); return; }
+  if(items===0){ showToast('El carrito está vacío'); return; }
   const order = {
     id: 'ORD-' + Date.now(),
     items: JSON.parse(JSON.stringify(CART)),
@@ -738,7 +738,7 @@ function saveCartAsOrder(){
   orders.push(order);
   localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
 
-  showToast('Order saved locally');
+  showToast('Pedido guardado');
 
   // try to submit to Netlify Forms (only works when hosted on Netlify)
   try{
@@ -759,7 +759,7 @@ function saveCartAsOrder(){
 async function checkoutReal() {
   const { subtotal, items } = calculateCart();
   if (items === 0) {
-    showToast("Cart empty");
+    showToast("El carrito está vacío");
     return;
   }
 
@@ -794,7 +794,7 @@ function doLogin(){
   localStorage.setItem('_user_v1', JSON.stringify(CURRENT_USER));
   document.getElementById('userName').textContent = name;
   closeAuth();
-  showToast('Logged in as '+name);
+  showToast('Sesión iniciada como '+name);
   document.getElementById('cartUser').textContent = name ? (' • ' + name) : '';
 }
 
