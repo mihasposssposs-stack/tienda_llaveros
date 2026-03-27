@@ -126,6 +126,18 @@
   .thumbs img{width:72px;height:48px;object-fit:cover;border-radius:8px;cursor:pointer;border:3px solid transparent}
   .thumbs img.active{border-color:var(--accent)}
 
+  /* Google Translate widget */
+  #google_translate_element .goog-te-gadget-simple{
+    border:1px solid #eef5ff !important;
+    border-radius:8px !important;
+    padding:4px 8px !important;
+    font-size:13px !important;
+    background:#fff !important;
+  }
+  #google_translate_element .goog-te-gadget-simple span{color:var(--black) !important}
+  .goog-te-banner-frame{display:none !important}
+  body{top:0 !important}
+
   footer{margin-top:40px;padding:32px;text-align:center;color:var(--muted);font-size:14px;border-top:1px solid #f0f6ff}
 
   /* ── HAMBURGER MENU ── */
@@ -205,6 +217,19 @@
 }
 
 </style>
+<!-- Google Translate -->
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'es',
+      includedLanguages: 'en,es,fr,de,it,pt',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>emailjs.init("J2imPl6BuscP2cOUR");</script>
@@ -244,6 +269,7 @@
       🛒 <span class="count" id="cartCount">0</span>
     </button>
     <button id="langToggle" class="lang-toggle">ES</button>
+    <div id="google_translate_element"></div>
   </div>
 </header>
 
