@@ -668,7 +668,6 @@ function openModalFor(id) {
   p.colors.forEach(c => {
     const t = document.createElement('div'); t.className = 'color-trace'; t.style.background = c.hex; traces.appendChild(t);
   });
-  document.getElementById('engravingInput').value = '';
   document.getElementById('qtySelect').value = '1';
   document.getElementById('addToCartBtn').onclick = () => {
     
