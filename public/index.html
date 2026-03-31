@@ -31,8 +31,8 @@
   --black: #0d0d0d;
   --grey: #6b6b6b;
   --light-grey: #e8e6e1;
-  --accent: #c8a227;
-  --accent-dark: #a07d10;
+  --accent: #0066cc;
+  --accent-dark: #004a99;
   --card-bg: #faf9f6;
   --danger: #d23f3f;
   --header-h: 80px;
@@ -58,7 +58,7 @@ header {
 }
 header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
 .brand { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-.logo { height: 56px; width: auto; object-fit: contain; }
+.logo { height: 72px; width: auto; object-fit: contain; }
 .brand-text h1 {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 20px; font-weight: 800; letter-spacing: 0.05em;
@@ -148,7 +148,7 @@ body { top: 0 !important; }
   cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
   transition: all 0.2s; letter-spacing: 0.02em;
 }
-.btn-hero-primary { background: var(--accent); color: var(--black); }
+.btn-hero-primary { background: var(--accent); color: var(--white); }
 .btn-hero-primary:hover { background: var(--accent-dark); color: var(--white); transform: translateY(-2px); }
 .btn-hero-outline { background: rgba(255,255,255,0.15); color: var(--white); border: 1px solid rgba(255,255,255,0.4); backdrop-filter: blur(4px); }
 .btn-hero-outline:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
@@ -205,7 +205,7 @@ body { top: 0 !important; }
 
 /* BUTTONS */
 .btn { padding: 9px 16px; border-radius: 9px; border: none; cursor: pointer; font-weight: 600; font-size: 13px; font-family: 'DM Sans', sans-serif; transition: all 0.18s; letter-spacing: 0.02em; }
-.btn-primary { background: var(--accent); color: var(--black); }
+.btn-primary { background: var(--accent); color: var(--white); }
 .btn-primary:hover { background: var(--accent-dark); color: var(--white); }
 .btn-outline { background: var(--white); color: var(--black); border: 1px solid var(--light-grey); }
 .btn-outline:hover { background: var(--off-white); border-color: #bbb; }
@@ -445,10 +445,9 @@ footer em { color: var(--accent); font-style: normal; }
       <div class="section-label">Logística</div>
       <div class="section-title-lg">Envíos y<br>Devoluciones</div>
       <div class="info-cards">
-        <div class="info-card"><div class="info-card-icon">🚚</div><h3>Envíos</h3><p>Enviamos a todo el mundo. Envío estándar en la UE: <strong>3-7 días laborables</strong>. Internacional: <strong>7-15 días laborables</strong>. Todos los llaveros se envían con número de seguimiento.</p></div>
-        <div class="info-card"><div class="info-card-icon">↩️</div><h3>Devoluciones</h3><p>Se aceptan devoluciones en un plazo de <strong>14 días</strong> si el producto no ha sido usado. Contáctanos a través del formulario de contacto para más información.</p></div>
-        <div class="info-card"><div class="info-card-icon">📦</div><h3>Embalaje</h3><p>Cada llavero incluye una <strong>caja protectora</strong> y certificado de autenticidad. Perfecto también para regalar.</p></div>
-        <div class="info-card"><div class="info-card-icon">✏️</div><h3>Personalización</h3><p>Puedes añadir un texto personalizado a tu llavero al realizar el pedido. Ideal para hacer el coleccionable todavía más especial.</p></div>
+        <div class="info-card"><div class="info-card-icon">🚚</div><h3>Envíos</h3><p>Próximamente publicaremos toda la información sobre plazos y métodos de envío. Si tienes alguna pregunta, contáctanos directamente.</p></div>
+        <div class="info-card"><div class="info-card-icon">↩️</div><h3>Devoluciones</h3><p>Próximamente publicaremos nuestra política de devoluciones. Para cualquier consulta, escríbenos a través del formulario de contacto.</p></div>
+        <div class="info-card"><div class="info-card-icon">📦</div><h3>Embalaje</h3><p>Cada llavero se envía con embalaje seguro para que llegue en perfecto estado. Más detalles próximamente.</p></div>
       </div>
     </div>
     <footer>© 2025 Racing Keychains — Miniaturas hechas a mano · Hecho con <em>♥</em> para los amantes del motor</footer>
@@ -508,8 +507,6 @@ footer em { color: var(--accent); font-style: normal; }
       <div class="modal-price" id="modalPrice"></div>
       <div class="modal-desc" id="modalDesc"></div>
       <div style="display:flex;gap:10px;margin-bottom:16px">
-        <input id="engravingInput" placeholder="Personalización opcional, ej: #5, Alo"
-          style="flex:1;padding:11px 14px;border-radius:10px;border:1px solid var(--light-grey);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;transition:border-color 0.2s">
         <select id="qtySelect" style="padding:11px 14px;border-radius:10px;border:1px solid var(--light-grey);font-family:'DM Sans',sans-serif;outline:none">
           <option value="1">1</option><option value="2">2</option><option value="3">3</option>
         </select>
@@ -674,9 +671,9 @@ function openModalFor(id) {
   document.getElementById('engravingInput').value = '';
   document.getElementById('qtySelect').value = '1';
   document.getElementById('addToCartBtn').onclick = () => {
-    const engraving = document.getElementById('engravingInput').value.trim();
+    
     const qty = parseInt(document.getElementById('qtySelect').value || '1');
-    addToCart(p.id, qty, engraving);
+    addToCart(p.id, qty);
     showToast('✅ Añadido al carrito'); renderCart(); closeModal();
   };
   document.getElementById('addToWishlistBtn').onclick = () => { toggleWishlist(p.id); showToast('♥ Añadido a favoritos'); };
